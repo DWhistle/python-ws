@@ -3,6 +3,7 @@ import os
 import logging.config
 import logging
 
+config = None
 
 def configure_logging(config: dict):
     logging.config.dictConfig(config)
@@ -14,6 +15,7 @@ def configure_resources():
         conf_file = open("prod-config.yml", "r")
     else:
         conf_file = open("dev-config.yml", "r")
+    global config
     config = yaml.safe_load(conf_file)
     configure_logging(config['logging'])
     conf_file.close()
